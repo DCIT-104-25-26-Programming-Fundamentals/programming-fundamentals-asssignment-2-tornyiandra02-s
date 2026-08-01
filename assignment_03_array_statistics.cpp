@@ -41,4 +41,68 @@
 
 #include <iostream>
 using namespace std;
+double calculateSum(const double arr[], int n) {
+    double sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
 
+double calculateAverage(double sum, int n) {
+    return sum / n;
+}
+
+double calculateMax(const double arr[], int n) {
+    double maxVal = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+
+double calculateMin(const double arr[], int n) {
+    double minVal = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < minVal) {
+            minVal = arr[i];
+        }
+    }
+    return minVal;
+}
+
+int main() {
+    int n;
+
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: The number of elements must be a positive integer." << endl;
+        return 1;
+    }
+
+    double* numbers = new double[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+
+    double sum = calculateSum(numbers, n);
+    double average = calculateAverage(sum, n);
+    double maximum = calculateMax(numbers, n);
+    double minimum = calculateMin(numbers, n);
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << sum << endl;
+    cout << "Average: " << average << endl;
+    cout << "Maximum: " << maximum << endl;
+    cout << "Minimum: " << minimum << endl;
+
+    delete[] numbers;
+
+    return 0;
+}
